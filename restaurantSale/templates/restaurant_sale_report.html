@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Restaurant Sales Report</h1>
+    <form method="get" action="{% url 'restaurant_sale_report' %}">
+        <label for="date_from">Date from:</label>
+        <input type="date" name="date_from" value="{{ date_from|date:'Y-m-d' }}">
+        <label for="date_to">Date to:</label>
+        <input type="date" name="date_to" value="{{ date_to|date:'Y-m-d' }}">
+        <button type="submit">Filter</button>
+    </form>
+    <br>
+    <tr>
+      <td colspan="3">Total Sales:</td>
+      <td>{{ total_sales }}</td>
+      <td></td>
+  </tr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Food Price</th>
+                <th>Number of Plates</th>
+                <th>Total Price</th>
+                <th>Payment Mode</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ sale.date|date:'Y-m-d' }}</td>
+                    <td>{{ sale.description }}</td>
+                    <td>{{ sale.price }}</td>
+                    <td>{{ sale.number_of_plates }}</td>
+                    <td>{{ sale.total_price }}</td>
+                    <td>{{ sale.payment_mode }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Sales by Payment Mode:</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">POS:</td>
+                <td>{{ pos_sales }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">TRANSFER:</td>
+                <td>{{ transfer_sales }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">CASH:</td>
+                <td>{{ cash_sales }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">DEBT:</td>
+                <td>{{ debt_sales }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">COMPLIMENTARY:</td>
+                <td>{{ complimentary_sales }}</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

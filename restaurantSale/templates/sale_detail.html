@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ sale.description }}</h1>
+  <table>
+    <tr>
+      <th>Date:</th>
+      <td>{{ sale.date }}</td>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <td>{{ sale.description }}</td>
+    </tr>
+    <tr>
+      <th>Number of Plates:</th>
+      <td>{{ sale.number_of_plates }}</td>
+    </tr>
+    <tr>
+      <th>Price:</th>
+      <td>{{ sale.price }}</td>
+    </tr>
+    <tr>
+      <th>Payment Mode:</th>
+      <td>{{ sale.get_payment_mode_display }}</td>
+    </tr>
+    <tr>
+      <th>Total Price:</th>
+      <td>{{ sale.total_price }}</td>
+    </tr>
+  </table>
+{% endblock %}

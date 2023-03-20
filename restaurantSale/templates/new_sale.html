@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>New Sale</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <label for="date">Date:</label>
+  <input type="date" name="date"><br>
+  <label for="description">Description:</label>
+  <input type="text" name="description"><br>
+  <label for="number_of_plates">Number of Plates:</label>
+  <input type="number" name="number_of_plates"><br>
+  <label for="price">Price:</label>
+  <input type="number" name="price"><br>
+  <label for="payment_mode">Payment Mode:</label>
+  <select name="payment_mode">
+    {% for choice in choices %}
+      <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+    {% endfor %}
+  </select><br>
+  <input type="submit" value="Submit">
+</form>
+{% endblock %}
